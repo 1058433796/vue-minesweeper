@@ -1,49 +1,22 @@
 <script setup lang="ts">
-const name = $ref('')
 
-const router = useRouter()
-const go = () => {
-  if (name)
-    router.push(`/hi/${encodeURIComponent(name)}`)
+function onClick(x: number, y: number) {
+  console.log(x, y)
 }
 </script>
 
 <template>
   <div>
-    <div i-carbon-campsite text-4xl inline-block />
-    <p>
-      <a rel="noreferrer" href="https://github.com/antfu/vitesse-lite" target="_blank">
-        Vitesse Lite
-      </a>
-    </p>
-    <p>
-      <em text-sm op75>Opinionated Vite Starter Template</em>
-    </p>
-
-    <div py-4 />
-
-    <input
-      id="input"
-      v-model="name"
-      placeholder="What's your name?"
-      type="text"
-      autocomplete="false"
-      p="x-4 y-2"
-      w="250px"
-      text="center"
-      bg="transparent"
-      border="~ rounded gray-200 dark:gray-700"
-      outline="none active:none"
-      @keydown.enter="go"
-    >
-
-    <div>
+    Minesweeper
+    <div v-for="x in 10" :key="x">
       <button
-        class="m-3 text-sm btn"
-        :disabled="!name"
-        @click="go"
+        v-for="y in 10"
+        :key="y"
+        w-10 h-10 border
+        hover:bg-gray
+        @click="onClick(x, y)"
       >
-        Go
+        {{ (x - 1)*10 + y }}
       </button>
     </div>
   </div>
